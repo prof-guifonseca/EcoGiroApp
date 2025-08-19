@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título ajustado para refletir a marca unificada -->
+    <title>EcoGiro App – Plataforma Inteligente</title>
+    <!-- Importa a fonte Inter utilizada na landing page para manter a identidade visual -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Estilo específico para o aplicativo -->
+    <link rel="stylesheet" href="style-app.css">
+</head>
+<body>
+    <!-- App Container -->
+    <div class="app-container">
+        <!-- Header with Mode Toggle -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="user-greeting">
+                    <h1>Olá, <span id="user-name">Maria Silva</span></h1>
+                    <p class="location">📍 <span id="user-location">São Paulo, SP</span></p>
+                </div>
+                <div class="mode-toggle">
+                    <button class="toggle-btn active" data-mode="casa">Casa</button>
+                    <button class="toggle-btn" data-mode="fabrica">Fábrica</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- Dashboard Screen -->
+            <div class="screen active" id="dashboard-screen">
+                <!-- Casa Dashboard -->
+                <div class="mode-content casa-mode active">
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon">🌪️</div>
+                            <div class="metric-content">
+                                <span class="metric-label">Vento</span>
+                                <span class="metric-value" id="wind-speed">12 km/h</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">💧</div>
+                            <div class="metric-content">
+                                <span class="metric-label">Chuva Captada</span>
+                                <span class="metric-value" id="rain-collected">45L</span>
+                            </div>
+                        </div>
+                        <div class="metric-card wide">
+                            <div class="metric-icon">⚡</div>
+                            <div class="metric-content">
+                                <span class="metric-label">Energia Gerada</span>
+                                <div class="energy-stats">
+                                    <span class="energy-today">Hoje: <strong id="energy-today">8.5 kWh</strong></span>
+                                    <span class="energy-total">Total: <strong id="energy-total">156 kWh</strong></span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 65%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="metric-card wide">
+                            <div class="metric-icon">🌱</div>
+                            <div class="metric-content">
+                                <span class="metric-label">Irrigação</span>
+                                <span class="metric-value" id="irrigation-status">Próxima: 14:30</span>
+                                <button class="quick-action-btn">Irrigar Agora</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recent-activity">
+                        <h3>Atividade Recente</h3>
+                        <div class="activity-item">
+                            <span class="activity-time">13:45</span>
+                            <span class="activity-text">Irrigação automática ativada</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-time">12:30</span>
+                            <span class="activity-text">Venda de manjericão concluída</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fábrica Dashboard -->
+                <div class="mode-content fabrica-mode">
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon">🏭</div>
+                            <div class="metric-content">
+                                <span class="metric-label">Fumaça Captada</span>
+                                <span class="metric-value" id="smoke-captured">89%</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">⚡</div>
+                            <div class="metric-content">
+                                <span class="metric-label">Energia Gerada</span>
+                                <span class="metric-value" id="energy-generated">245 kWh</span>
+                            </div>
+                        </div>
+                        <div class="metric-card wide">
+                            <div class="metric-icon">🌍</div>
+                            <div class="metric-content">
+                                <span class="metric-label">Redução de CO₂</span>
+                                <span class="metric-value" id="co2-reduction">1.2 ton</span>
+                                <div class="environmental-impact">
+                                    <span class="impact-text">Equivale a 52 árvores plantadas</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">🌡️</div>
+                            <div class="metric-content">
+                                <span class="metric-label">Temperatura</span>
+                                <span class="metric-value" id="system-temp">65°C</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">📊</div>
+                            <div class="metric-content">
+                                <span class="metric-label">Eficiência</span>
+                                <span class="metric-value" id="efficiency">94%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cost-savings">
+                        <h3>Economia Total</h3>
+                        <div class="savings-amount" id="cost-savings">R$ 3.450</div>
+                        <div class="savings-period">Este mês</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls Screen -->
+            <div class="screen" id="controls-screen">
+                <!-- Casa Controls -->
+                <div class="mode-content casa-mode active">
+                    <div class="control-section">
+                        <h3>Controle de Irrigação</h3>
+                        <div class="irrigation-toggle">
+                            <button class="toggle-option active">Automático</button>
+                            <button class="toggle-option">Manual</button>
+                        </div>
+                        <div class="irrigation-schedule">
+                            <h4>Agendamento</h4>
+                            <div class="schedule-options">
+                                <div class="schedule-card">
+                                    <span class="schedule-time">06:00</span>
+                                    <span class="schedule-status active">Ativo</span>
+                                </div>
+                                <div class="schedule-card">
+                                    <span class="schedule-time">14:30</span>
+                                    <span class="schedule-status active">Ativo</span>
+                                </div>
+                                <div class="schedule-card">
+                                    <span class="schedule-time">18:00</span>
+                                    <span class="schedule-status">Inativo</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="garden-status">
+                            <h4>Status do Jardim</h4>
+                            <div class="plant-sensors">
+                                <div class="sensor-item">
+                                    <span class="sensor-name">Zona 1 - Temperos</span>
+                                    <span class="sensor-status good">●</span>
+                                </div>
+                                <div class="sensor-item">
+                                    <span class="sensor-name">Zona 2 - Hortaliças</span>
+                                    <span class="sensor-status warning">●</span>
+                                </div>
+                                <div class="sensor-item">
+                                    <span class="sensor-name">Zona 3 - Flores</span>
+                                    <span class="sensor-status good">●</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fábrica Controls -->
+                <div class="mode-content fabrica-mode">
+                    <div class="control-section">
+                        <h3>Monitoramento de Equipamentos</h3>
+                        <div class="equipment-grid">
+                            <div class="equipment-card">
+                                <div class="equipment-icon">🌪️</div>
+                                <div class="equipment-info">
+                                    <h4>Turbinas</h4>
+                                    <span class="equipment-status">1850 RPM</span>
+                                    <span class="equipment-health good">Funcionando</span>
+                                </div>
+                            </div>
+                            <div class="equipment-card">
+                                <div class="equipment-icon">🔧</div>
+                                <div class="equipment-info">
+                                    <h4>Filtros de Carbono</h4>
+                                    <span class="equipment-status">92% Eficiência</span>
+                                    <span class="equipment-health good">Ótimo</span>
+                                </div>
+                            </div>
+                            <div class="equipment-card">
+                                <div class="equipment-icon">⚡</div>
+                                <div class="equipment-info">
+                                    <h4>Aerogeradores</h4>
+                                    <span class="equipment-status">245 kWh</span>
+                                    <span class="equipment-health warning">Manutenção em 15d</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="maintenance-alerts">
+                            <h4>Alertas de Manutenção</h4>
+                            <div class="alert-item">
+                                <span class="alert-priority medium">●</span>
+                                <div class="alert-content">
+                                    <span class="alert-text">Limpeza filtros - Zona A</span>
+                                    <span class="alert-date">Em 3 dias</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marketplace/Certificates Screen -->
+            <div class="screen" id="marketplace-screen">
+                <!-- Casa Marketplace -->
+                <div class="mode-content casa-mode active">
+                    <div class="marketplace-header">
+                        <h3>Marketplace de Plantas</h3>
+                        <div class="search-filters">
+                            <input type="text" placeholder="Buscar plantas..." class="search-input">
+                            <select class="filter-select">
+                                <option>Todas as categorias</option>
+                                <option>Temperos</option>
+                                <option>Hortaliças</option>
+                                <option>Flores</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="plants-grid" id="plants-grid">
+                        <!-- Plants will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Fábrica Certificates -->
+                <div class="mode-content fabrica-mode">
+                    <div class="certificates-section">
+                        <h3>Certificações e Relatórios</h3>
+                        <div class="certificates-grid">
+                            <div class="certificate-card">
+                                <div class="certificate-icon">📜</div>
+                                <div class="certificate-info">
+                                    <h4>ISO 14001</h4>
+                                    <span class="certificate-status valid">Válido até 2025</span>
+                                </div>
+                            </div>
+                            <div class="certificate-card">
+                                <div class="certificate-icon">🌱</div>
+                                <div class="certificate-info">
+                                    <h4>ESG Compliance</h4>
+                                    <span class="certificate-status valid">Atualizado</span>
+                                </div>
+                            </div>
+                            <div class="certificate-card">
+                                <div class="certificate-icon">💰</div>
+                                <div class="certificate-info">
+                                    <h4>Créditos de Carbono</h4>
+                                    <span class="certificate-status">145 créditos</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reports-section">
+                            <h4>Relatórios Automáticos</h4>
+                            <button class="btn btn--primary">Gerar Relatório Mensal</button>
+                            <button class="btn btn--outline">Histórico de Auditoria</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Screen -->
+            <div class="screen" id="profile-screen">
+                <div class="profile-header">
+                    <div class="profile-avatar">👤</div>
+                    <div class="profile-info">
+                        <h3 id="profile-name">Maria Silva</h3>
+                        <div class="profile-level">
+                            <span class="level-badge">Nível <span id="user-level">15</span></span>
+                            <div class="level-progress">
+                                <div class="level-progress-fill" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sustainability-score">
+                    <h4>Pontuação de Sustentabilidade</h4>
+                    <div class="score-circle">
+                        <div class="score-value" id="sustainability-score">2450</div>
+                        <div class="score-label">pontos</div>
+                    </div>
+                </div>
+                <div class="achievements-section">
+                    <h4>Conquistas</h4>
+                    <div class="achievements-grid" id="achievements-grid">
+                        <!-- Achievements will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="stats-section">
+                    <h4>Estatísticas</h4>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-value" id="plants-sold">23</span>
+                            <span class="stat-label">Plantas vendidas</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="water-saved">340L</span>
+                            <span class="stat-label">Água economizada</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="energy-generated-stat">156 kWh</span>
+                            <span class="stat-label">Energia gerada</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More Screen -->
+            <div class="screen" id="more-screen">
+                <div class="more-content">
+                    <h3>Configurações e Mais</h3>
+                    <div class="settings-group">
+                        <h4>Preferências</h4>
+                        <div class="setting-item">
+                            <span class="setting-label">Tema escuro</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="dark-mode-toggle">
+                                <label for="dark-mode-toggle"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <span class="setting-label">Notificações</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="notifications-toggle" checked>
+                                <label for="notifications-toggle"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings-group">
+                        <h4>Conta</h4>
+                        <div class="setting-item">
+                            <span class="setting-label">Editar Perfil</span>
+                            <span class="setting-arrow">›</span>
+                        </div>
+                        <div class="setting-item">
+                            <span class="setting-label">Conectar com Cooperativas</span>
+                            <span class="setting-arrow">›</span>
+                        </div>
+                    </div>
+                    <div class="settings-group">
+                        <h4>Suporte</h4>
+                        <div class="setting-item">
+                            <span class="setting-label">Central de Ajuda</span>
+                            <span class="setting-arrow">›</span>
+                        </div>
+                        <div class="setting-item">
+                            <span class="setting-label">Fale Conosco</span>
+                            <span class="setting-arrow">›</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-tab active" data-screen="dashboard">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Dashboard</span>
+            </button>
+            <button class="nav-tab" data-screen="controls">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">Controles</span>
+            </button>
+            <button class="nav-tab" data-screen="marketplace">
+                <span class="nav-icon">🛒</span>
+                <span class="nav-label">Marketplace</span>
+            </button>
+            <button class="nav-tab" data-screen="profile">
+                <span class="nav-icon">👤</span>
+                <span class="nav-label">Perfil</span>
+            </button>
+            <button class="nav-tab" data-screen="more">
+                <span class="nav-icon">⋯</span>
+                <span class="nav-label">Mais</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="notification-toast">
+        <div class="toast-content">
+            <span class="toast-icon">🔔</span>
+            <span class="toast-message">Irrigação automática iniciada</span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
